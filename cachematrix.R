@@ -8,7 +8,7 @@
 ## 4. get the value of the inverse matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-    inv <- NULL
+    inv <- NULL         # 'inv' will contain the value of the inverse matrix
     
     set <- function(y){
         x <<- y
@@ -27,16 +27,18 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get, setsolve = setsolve, getsolve = getsolve)
 }
 
+
 ## Function cacheSolve returns cashed value of the inverse matrix
 ## or computes it for a matrix from makeCacheMatrix if cashed value is NULL.
 
 cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
+    ## getting the value of inverse matrix.
     inv <- x$getsolve()
     
+    ## If the value is not NULL then print cashed data
+    ## else compute inverse matrix and cache the value.
     if(!is.null(inv)) {
-        message("Getting cashed data.")
-        #return inv
+        message("Getting cashed data")
     } else {
         inv <- solve(x$get())
         x$setsolve(inv)
